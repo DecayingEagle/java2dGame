@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL30.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
 import keeki.renderer.Shader;
@@ -13,10 +14,10 @@ public class LevelEditorScene extends Scene {
 
     private float[] vertexArray = {
         // position             // color
-        0.5f, -0.5f, 0.0f,      1.0f, 0.0f, 0.0f, 1.0f, // Bottom right 0
-        -0.5f, 0.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f, // Top left     1
-        0.5f, 0.5f, 0.0f,       0.0f, 0.0f, 1.0f, 1.0f, // Top right    2
-        -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f // Bottom left   3
+        50.5f, -50.5f, 0.0f,      1.0f, 0.0f, 0.0f, 1.0f, // Bottom right 0
+        -50.5f, 50.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f, // Top left     1
+        50.5f, 50.5f, 0.0f,       0.0f, 0.0f, 1.0f, 1.0f, // Top right    2
+        -50.5f, -50.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f // Bottom left   3
 
     };
 
@@ -37,6 +38,7 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void init() {
+        this.camera = new Camera(new Vector2f());
         defaultShader = new Shader("java2dGame/assets/shaders/default.glsl");
         defaultShader.compile();
 
@@ -81,7 +83,12 @@ public class LevelEditorScene extends Scene {
     
     @Override
     public void Update(float dt) {
+        camera.position.x -= dt * 50.0f;
+        camera.position.y -= dt * 50.0f;
+
         defaultShader.use();
+        defaultShader.uploadMat4f("uProj", camera.getProjectionMatrix());
+        defaultShader.uploadMat4f("uView", camera.getViewMatrix());
         // Bind the VAO that we're using
         glBindVertexArray(vaoID);
 

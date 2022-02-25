@@ -3,13 +3,12 @@ package keeki.jade;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
+import keeki.util.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.system.MemoryUtil.*;
-
-import util.*;
 
 public class Window {
     int w, h;
