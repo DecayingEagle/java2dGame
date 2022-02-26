@@ -24,7 +24,7 @@ public class Window {
     private Window() {
         this.w = 800;
         this.h = 600;
-        this.title = "Title";
+        this.title = "Pinkberry";
         this.r = 1.0f;
         this.g = 1.0f;
         this.b = 1.0f;
