@@ -9,15 +9,16 @@ import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
 import keeki.renderer.Shader;
+import keeki.util.Time;
 
 public class LevelEditorScene extends Scene {
 
     private float[] vertexArray = {
         // position             // color
-        50.5f, -50.5f, 0.0f,      1.0f, 0.0f, 0.0f, 1.0f, // Bottom right 0
-        -50.5f, 50.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f, // Top left     1
-        50.5f, 50.5f, 0.0f,       0.0f, 0.0f, 1.0f, 1.0f, // Top right    2
-        -50.5f, -50.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f // Bottom left   3
+        100.5f, -100.5f, 0.0f,      1.0f, 0.0f, 0.0f, 1.0f, // Bottom right 0
+        -100.5f, 100.5f, 0.0f,      0.0f, 1.0f, 0.0f, 1.0f, // Top left     1
+        100.5f, 100.5f, 0.0f,       0.0f, 0.0f, 1.0f, 1.0f, // Top right    2
+        -100.5f, -100.5f, 0.0f,     1.0f, 1.0f, 0.0f, 1.0f // Bottom left   3
 
     };
 
@@ -39,7 +40,7 @@ public class LevelEditorScene extends Scene {
     @Override
     public void init() {
         this.camera = new Camera(new Vector2f());
-        defaultShader = new Shader("java2dGame/assets/shaders/default.glsl");
+        defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
 
 
@@ -89,6 +90,7 @@ public class LevelEditorScene extends Scene {
         defaultShader.use();
         defaultShader.uploadMat4f("uProj", camera.getProjectionMatrix());
         defaultShader.uploadMat4f("uView", camera.getViewMatrix());
+        defaultShader.uploadFloat("uTime", Time.getTime());
         // Bind the VAO that we're using
         glBindVertexArray(vaoID);
 
