@@ -1,21 +1,28 @@
 package keeki.components;
 
+import org.joml.Vector4f;
+
 import keeki.jade.Component;
 
 public class SpriteRenderer extends Component{
-    private boolean firstTime = false;
+
+    private Vector4f color;
+
+    public SpriteRenderer(Vector4f color) {
+        this.color = color;
+    }
 
     @Override
     public void start() {
-        System.out.println("SpriteRenderer.start()");
+        
     }
 
     @Override
     public void update(float dt) {
-        if (!firstTime) {
-            System.out.println("SpriteRenderer.update()");
-            firstTime = true;
-        } 
+        
     }
     
+    public Vector4f getColor() {
+        return this.color;
+    }
 }

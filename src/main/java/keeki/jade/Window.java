@@ -25,10 +25,10 @@ public class Window {
         this.w = 1920;
         this.h = 1080;
         this.title = "Pinkberry";
-        this.r = 0.2f;
-        this.g = 0.0f;
-        this.b = 0.2f;
-        this.a = 1.0f;
+        this.r = 0;
+        this.g = 0;
+        this.b = 0;
+        this.a = 1;
     }
 
     public static void changeScene(int newScene){
@@ -56,6 +56,10 @@ public class Window {
         }
 
         return Window.window;
+    }
+
+    public static Scene getScene() {
+        return get().currentScene;
     }
 
     public void run() {
