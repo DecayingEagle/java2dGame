@@ -22,12 +22,12 @@ public class Window {
     private static Scene currentScene;
 
     private Window() {
-        this.w = 800;
-        this.h = 600;
+        this.w = 1920;
+        this.h = 1080;
         this.title = "Pinkberry";
-        this.r = 1.0f;
-        this.g = 1.0f;
-        this.b = 1.0f;
+        this.r = 0.2f;
+        this.g = 0.0f;
+        this.b = 0.2f;
         this.a = 1.0f;
     }
 
@@ -36,10 +36,12 @@ public class Window {
             case 0:
                 currentScene = new LevelEditorScene();
                 currentScene.init();
+                currentScene.start();
                 break;
             case 1:
                 currentScene = new LevelScene();
                 currentScene.init();
+                currentScene.start();
                 break;
         
             default:
